@@ -1,8 +1,10 @@
 import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import Colors from "../../constants/Colors";
+import { useRouter } from "expo-router";
 
 export default function LoginScreen() {
+  const router = useRouter();
   return (
     <View
       style={{
@@ -50,6 +52,9 @@ export default function LoginScreen() {
             backgroundColor: Colors.PRIMARY,
             width: "100%",
             borderRadius: 14,
+          }}
+          onPress={() => {
+            router.push("auth/sign-in");
           }}
         >
           <Text
