@@ -1,106 +1,117 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect } from "react";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import Colors from "../../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function SignIn() {
   const navigation = useNavigation();
+  const router = useRouter();
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, []);
 
   return (
-    <View>
-      <View
+    <View
+      style={{
+        padding: 25,
+        paddingTop: 40,
+        backgroundColor: Colors.WHITE,
+        height: "100%",
+      }}
+    >
+      <TouchableOpacity onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="black" />
+      </TouchableOpacity>
+      <Text
         style={{
-          padding: 25,
-          paddingTop: 50,
-          backgroundColor: Colors.WHITE,
-          height: "100%",
+          fontFamily: "outfit-bold",
+          fontSize: 30,
+          marginTop: 2,
         }}
       >
-        <Text
-          style={{
-            fontFamily: "outfit-bold",
-            fontSize: 30,
-          }}
-        >
-          Let's Sign You In
-        </Text>
-        <Text
-          style={{
-            fontFamily: "outfit-regular",
-            fontSize: 30,
-            color: Colors.GRAY,
-            marginTop: 10,
-          }}
-        >
-          Welcome Back
-        </Text>
-        <Text
-          style={{
-            fontFamily: "outfit-regular",
-            fontSize: 30,
-            color: Colors.GRAY,
-          }}
-        >
-          You've been Missed!
-        </Text>
+        Let's Sign You In
+      </Text>
+      <Text
+        style={{
+          fontFamily: "outfit-regular",
+          fontSize: 30,
+          color: Colors.GRAY,
+          marginTop: 10,
+        }}
+      >
+        Welcome Back
+      </Text>
+      <Text
+        style={{
+          fontFamily: "outfit-regular",
+          fontSize: 30,
+          color: Colors.GRAY,
+        }}
+      >
+        You've been Missed!
+      </Text>
 
-        <View
-          style={{
-            marginTop: 10,
-          }}
-        >
-          <Text style={{ fontFamily: "outfit-regular" }}></Text>
-        </View>
-
-        {/*Email*/}
-        <View>
-          <Text>Email</Text>
-          <TextInput style={styles.input} placeholder="Enter Email" />
-        </View>
-
-        {/*Password*/}
-        <View style={{ marginTop: 20 }}>
-          <Text>Password</Text>
-          <TextInput
-            secureTextEntry={true}
-            style={styles.input}
-            placeholder="Enter Password"
-          />
-        </View>
-
-        {/* SignIn Account Button */}
-        <View
-          style={{
-            padding: 20,
-            backgroundColor: Colors.PRIMARY,
-            borderRadius: 15,
-            marginTop: 50,
-          }}
-        >
-          <Text style={{ color: Colors.WHITE, textAlign: "center" }}>
-            Sign In
-          </Text>
-        </View>
-
-        {/* Create Button */}
-        <View
-          style={{
-            padding: 20,
-            backgroundColor: Colors.WHITE,
-            borderRadius: 15,
-            marginTop: 20,
-            borderWidth: 1,
-          }}
-        >
-          <Text style={{ color: Colors.PRIMARY, textAlign: "center" }}>
-            Create Account
-          </Text>
-        </View>
+      <View
+        style={{
+          marginTop: 10,
+        }}
+      >
+        <Text style={{ fontFamily: "outfit-regular" }}></Text>
       </View>
+
+      {/*Email*/}
+      <View style={{ marginTop: 5 }}>
+        <Text style={{ fontFamily: "outfit-regular" }}>Email</Text>
+        <TextInput style={styles.input} placeholder="Enter Email" />
+      </View>
+
+      {/*Password*/}
+      <View style={{ marginTop: 20 }}>
+        <Text>Password</Text>
+        <TextInput
+          secureTextEntry={true}
+          style={styles.input}
+          placeholder="Enter Password"
+        />
+      </View>
+
+      {/* SignIn Button */}
+      <View
+        style={{
+          padding: 20,
+          backgroundColor: Colors.PRIMARY,
+          borderRadius: 15,
+          marginTop: 50,
+        }}
+      >
+        <Text style={{ color: Colors.WHITE, textAlign: "center" }}>
+          Sign In
+        </Text>
+      </View>
+
+      {/* Create Account Button */}
+      <TouchableOpacity
+        onPress={() => router.replace("auth/sign-up")}
+        style={{
+          padding: 20,
+          backgroundColor: Colors.WHITE,
+          borderRadius: 15,
+          marginTop: 20,
+          borderWidth: 1,
+        }}
+      >
+        <Text style={{ color: Colors.PRIMARY, textAlign: "center" }}>
+          Create Account
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
