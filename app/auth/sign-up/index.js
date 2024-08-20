@@ -11,7 +11,7 @@ import { useNavigation, useRouter } from "expo-router";
 import Colors from "../../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { auth } from "../../../configs/FirebaseConfig";
-import { createLanguageService } from "typescript";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -36,6 +36,7 @@ export default function SignUp() {
         // Signed up
         const user = userCredential.user;
         console.log(user);
+
         // ...
       })
       .catch((error) => {
