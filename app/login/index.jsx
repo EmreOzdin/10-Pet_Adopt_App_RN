@@ -54,7 +54,7 @@ export default function LoginScreen() {
             borderRadius: 14,
           }}
           onPress={() => {
-            router.push("auth/sign-in");
+            router.push("/(tabs)/home");
           }}
         >
           <Text
