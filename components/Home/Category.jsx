@@ -1,10 +1,19 @@
-import { View, Text, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../configs/FirebaseConfig";
+import Colors from "./../../constants/Colors";
 
 export default function Category() {
   const [categorylist, setCategoryList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("Dogs");
 
   useEffect(() => {
     GetCategories();
@@ -24,9 +33,21 @@ export default function Category() {
       </Text>
       <FlatList
         data={categorylist}
+        numColumns={4}
         renderItem={({ item, index }) => (
-          <View>
-            <View>
+          <TouchableOpacity
+            onPress={() => setSelectedCategory(item.name)}
+            style={{
+              flex: 1,
+            }}
+          >
+            <View
+              style={[
+                styles.container,
+                selectedCategory == item.name &&
+                  styles.selectedCategoryContainer,
+              ]}
+            >
               <Image
                 source={{ uri: item?.imageUrl }}
                 style={{
@@ -36,9 +57,33 @@ export default function Category() {
                 }}
               />
             </View>
-          </View>
+            <Text
+              style={{
+                fontFamily: "outfit-regular",
+                textAlign: "center",
+              }}
+            >
+              {item?.name}
+            </Text>
+          </TouchableOpacity>
         )}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.LIGHT_PRIMARY,
+    padding: 15,
+    alignItems: "center",
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: Colors.PRIMARY,
+    margin: 5,
+  },
+  selectedCategoryContainer: {
+    backgroundColor: Colors.SECONDARY,
+    borderColor: Colors.SECONDARY,
+  },
+});
