@@ -19,9 +19,8 @@ export default function Slider() {
 
   const GetSlider = async () => {
     setSliderList([]);
-    const snapshot = await getDocs(collection(db, "sliders"));
+    const snapshot = await getDocs(collection(db, "Sliders"));
     snapshot.forEach((doc) => {
-      console.log(doc.data());
       setSliderList((sliderList) => [...sliderList, doc.data()]);
     });
   };
