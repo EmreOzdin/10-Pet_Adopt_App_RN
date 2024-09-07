@@ -4,6 +4,7 @@ import Category from "./Category";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../configs/FirebaseConfig";
 import PetListItem from "./PetListItem";
+import Colors from "../../constants/Colors";
 
 export default function PetListByCategory() {
   const [petList, setPetList] = useState([]);
@@ -27,6 +28,7 @@ export default function PetListByCategory() {
       {/* List of Pets */}
       <FlatList
         data={petList}
+        horizontal={true}
         renderItem={({ item, index }) => <PetListItem pet={item} />}
       />
     </View>
