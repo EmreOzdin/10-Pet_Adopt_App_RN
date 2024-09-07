@@ -19,7 +19,6 @@ export default function PetListByCategory() {
 
     querySnapshot.forEach((doc) => {
       setPetList((petList) => [...petList, doc.data()]);
-      // Update the state with the retrieved data
     });
   };
   return (
@@ -28,9 +27,7 @@ export default function PetListByCategory() {
       {/* List of Pets */}
       <FlatList
         data={petList}
-        renderItem={({ item, index }) => {
-          <PetListItem pet={item} />;
-        }}
+        renderItem={({ item, index }) => <PetListItem pet={item} />}
       />
     </View>
   );

@@ -4,10 +4,7 @@ import React from "react";
 export default function PetListItem({ pet }) {
   return (
     <View>
-      <Image
-        source={{ uri: pet?.imageUrl }}
-        style={{ width: 150, height: 135 }}
-      />
+      <Text>PetListItem</Text>
     </View>
   );
 }
