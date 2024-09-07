@@ -8,12 +8,14 @@ import Colors from "../../constants/Colors";
 
 export default function PetListByCategory() {
   const [petList, setPetList] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     GetPetList("Dogs");
   }, []);
 
   const GetPetList = async (category) => {
+    setLoader(true);
     setPetList([]);
     const q = query(collection(db, "Pets"), where("category", "==", category));
     const querySnapshot = await getDocs(q);
@@ -21,6 +23,7 @@ export default function PetListByCategory() {
     querySnapshot.forEach((doc) => {
       setPetList((petList) => [...petList, doc.data()]);
     });
+    setLoader(false);
   };
   return (
     <View>
@@ -28,7 +31,10 @@ export default function PetListByCategory() {
       {/* List of Pets */}
       <FlatList
         data={petList}
+        style={{ margint: 10 }}
         horizontal={true}
+        refreshing={loader}
+        onRefresh={() => GetPetList("Dogs")}
         renderItem={({ item, index }) => <PetListItem pet={item} />}
       />
     </View>

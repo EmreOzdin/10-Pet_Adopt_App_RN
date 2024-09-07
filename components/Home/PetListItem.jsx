@@ -6,12 +6,11 @@ export default function PetListItem({ pet }) {
   return (
     <View
       style={{
-        padding: 5,
-        marginRight: 10,
+        padding: 10,
+        marginRight: 15,
         backgroundColor: Colors.WHITE,
         borderRadius: 10,
-        width: 170,
-        alignItems: "center",
+        marginBottom: 30,
       }}
     >
       <Image
@@ -19,7 +18,7 @@ export default function PetListItem({ pet }) {
         style={{
           width: 150,
           height: 135,
-          objectFit: "fill",
+          objectFit: "cover",
           borderRadius: 10,
         }}
       />
